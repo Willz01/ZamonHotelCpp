@@ -25,7 +25,7 @@ public:
 
     const string &getOccupant() const;
 
-    void setOccupant(const string &occupant);
+    void setOccupant(string &R_occupant);
 
     const string &getType() const;
 

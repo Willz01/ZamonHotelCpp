@@ -21,10 +21,6 @@ const string &Room::getOccupant() const {
     return occupant;
 }
 
-void Room::setOccupant(const string &occupant) {
-    Room::occupant = occupant;
-}
-
 const string &Room::getType() const {
     return type;
 }
@@ -55,4 +51,8 @@ int Room::getPeriod() const {
 
 void Room::setPeriod(int period) {
     Room::period = period;
+}
+
+void Room::setOccupant(string &R_occupant) {
+        Room::occupant = R_occupant;
 }
