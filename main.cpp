@@ -43,14 +43,14 @@ int main() {
         cin >> choice;
         switch (choice) {
             case 1:
-                cout << "Room no.\t\t Occupant\t\t Type\t\t\t\t\t Charge\t\t Availability\t\t Period\t\t"
+                cout << "Room no.\t\t Occupant\t\t Type\t\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
                      << endl;
                 for (auto &room : rooms) {
                     // 0,1,2,3,4,5
                     cout << room.getRoomNo() << "\t\t\t\t " << room.getOccupant() << "\t\t\t\t "
                          << room.getType() <<
                          "\t\t " << room.getCharge() << "\t\t\t\t " << r_NY(room.isAvailability())
-                         << "\t\t\t\t " << room.getPeriod() << "\t\t\t\t\n";
+                         << "\t\t\t\t\t " << room.getPeriod() << "\t\t\t\t\n";
                 }
                 break;
             case 3:
@@ -63,7 +63,7 @@ int main() {
                         if (rooms.at(i).getRoomNo() == room_number) {
                             cout << "Occupant name : ";
                             getline(cin, occupant_name);
-                            rooms.at(i).setOccupant(occupant_name);   //TODO
+                            rooms.at(i).setOccupant(occupant_name);   //TODO(bug) -- sets name to blank
                             cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "From--> " << endl;
                             cout << "Day : ";
