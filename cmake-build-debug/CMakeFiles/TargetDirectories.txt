@@ -1,0 +1,3 @@
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/cmake-build-debug/CMakeFiles/ZamonHotelBookingCpp.dir

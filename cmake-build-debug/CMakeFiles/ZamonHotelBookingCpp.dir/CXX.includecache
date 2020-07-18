@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.cpp
+Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
+utility
+-
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/main.cpp
+iostream
+-
+Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
+Room.cpp
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.cpp
+vector
+-
+cstdlib
+-
+ctime
+-
+chrono
+-
+string
+-
+
