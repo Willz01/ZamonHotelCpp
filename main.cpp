@@ -105,7 +105,7 @@ int main() {
         cin >> choice;
         switch (choice) {
             case 1:
-                cout << "Room no.\t\t Occupant\t\t Type\t\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
+                cout << "Room no.\t\t Occupant\t\t\t Type\t\t\tFi\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
                      << endl;
                 for (auto &room : rooms) {
                     // 0,1,2,3,4,5
