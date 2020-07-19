@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Room.h"
-#include "Room.cpp"
+#include <utility>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
@@ -11,11 +10,77 @@ using namespace std;
 
 string r_NY(bool cond);
 
+
 void home_display();
 
 typedef std::chrono::system_clock Clock;
 
 int rdn(int y, int m, int d);
+
+class Room {
+private:
+    int room_no;
+public:
+    string occupant;
+    string type;
+    double charge;
+    bool availability;
+    int period;
+
+    Room(int roomNo, string occupant, string type, double charge, bool availability, int period)
+            : room_no(roomNo), occupant(std::move(occupant)), type(std::move(type)), charge(charge),
+              availability(availability),
+              period(period) {}
+
+    int getRoomNo() const {
+        return room_no;
+    }
+
+    void setRoomNo(int roomNo) {
+        room_no = roomNo;
+    }
+
+    string getOccupant() const {
+        return occupant;
+    }
+
+    void setOccupant(string occupant) {
+        Room::occupant = occupant;
+    }
+
+    const string &getType() const {
+        return type;
+    }
+
+    void setType(const string &type) {
+        Room::type = type;
+    }
+
+    double getCharge() const {
+        return charge;
+    }
+
+    void setCharge(double charge) {
+        Room::charge = charge;
+    }
+
+    bool isAvailability() const {
+        return availability;
+    }
+
+    void setAvailability(bool availability) {
+        Room::availability = availability;
+    }
+
+    int getPeriod() const {
+        return period;
+    }
+
+    void setPeriod(int period) {
+        Room::period = period;
+    }
+
+};
 
 int main() {
     // Populate rooms;
@@ -35,15 +100,12 @@ int main() {
     /* ***************************** */
     int choice;
     int room_number;
-    string occupant_name;
-    int dayFrom, monthFrom, dayTo, monthTo;
-    int period;
     do {
         home_display();
         cin >> choice;
         switch (choice) {
             case 1:
-                cout << "Room no.\t\t Occupant\t\t Type\t\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
+                cout << "Room no.\t\t Occupant\t\t\t Type\t\t\tFi\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
                      << endl;
                 for (auto &room : rooms) {
                     // 0,1,2,3,4,5
@@ -61,10 +123,13 @@ int main() {
                     // room info
                     for (int i = 0; i <= rooms.size() - 1; ++i) {
                         if (rooms.at(i).getRoomNo() == room_number) {
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "Occupant name : ";
+                            string occupant_name;
                             getline(cin, occupant_name);
                             rooms.at(i).setOccupant(occupant_name);   //TODO(bug) -- sets name to blank
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            int dayFrom, monthFrom, dayTo, monthTo;
+                            int period;
                             cout << "From--> " << endl;
                             cout << "Day : ";
                             cin >> dayFrom;
@@ -129,3 +194,5 @@ int rdn(int y, int m, int d) { /* Rata Die day one is 0001-01-01 */
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
+
+
