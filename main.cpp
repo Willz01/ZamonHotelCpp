@@ -5,82 +5,22 @@
 #include <ctime>
 #include <chrono>
 #include <string>
+#include "Room.h"
+#include "Room.cpp"
+#include "Customer.h"
+#include "Customer.cpp"
+#include <ctime>
+#include <cmath>
 
 using namespace std;
 
 string r_NY(bool cond);
-
 
 void home_display();
 
 typedef std::chrono::system_clock Clock;
 
 int rdn(int y, int m, int d);
-
-class Room {
-private:
-    int room_no;
-public:
-    string occupant;
-    string type;
-    double charge;
-    bool availability;
-    int period;
-
-    Room(int roomNo, string occupant, string type, double charge, bool availability, int period)
-            : room_no(roomNo), occupant(std::move(occupant)), type(std::move(type)), charge(charge),
-              availability(availability),
-              period(period) {}
-
-    int getRoomNo() const {
-        return room_no;
-    }
-
-    void setRoomNo(int roomNo) {
-        room_no = roomNo;
-    }
-
-    string getOccupant() const {
-        return occupant;
-    }
-
-    void setOccupant(string occupant) {
-        Room::occupant = occupant;
-    }
-
-    const string &getType() const {
-        return type;
-    }
-
-    void setType(const string &type) {
-        Room::type = type;
-    }
-
-    double getCharge() const {
-        return charge;
-    }
-
-    void setCharge(double charge) {
-        Room::charge = charge;
-    }
-
-    bool isAvailability() const {
-        return availability;
-    }
-
-    void setAvailability(bool availability) {
-        Room::availability = availability;
-    }
-
-    int getPeriod() const {
-        return period;
-    }
-
-    void setPeriod(int period) {
-        Room::period = period;
-    }
-
-};
 
 int main() {
     // Populate rooms;
@@ -91,6 +31,7 @@ int main() {
     Room r5(5, "-", "Apartment\t\t", 7650, true, 0);
     Room r6(6, "-", "Bedroom\t\t", 1300, true, 0);
     vector<Room> rooms;
+    vector<Customer> customers;
     rooms.push_back(r1);
     rooms.push_back(r2);
     rooms.push_back(r3);
@@ -105,7 +46,7 @@ int main() {
         cin >> choice;
         switch (choice) {
             case 1:
-                cout << "Room no.\t\t Occupant\t\t\t Type\t\t\tFi\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
+                cout << "Room no.\t\t Occupant\t\t\t Type\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
                      << endl;
                 for (auto &room : rooms) {
                     // 0,1,2,3,4,5
@@ -148,14 +89,58 @@ int main() {
                                      rdn(1900 + parts->tm_year, monthTo, dayTo);
                             rooms.at(i).setPeriod(abs(period));
                             rooms.at(i).setAvailability(false);
-
+                            cout << "CUSTOMER'S DETAILS\n";
+                            int age, ID, phone_number;
+                            string address, email;
+                            cout << "==============================\n";
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cout << "Email address : ";
+                            getline(cin, email);
+                            cout << "Address       : ";
+                            getline(cin, address);
+                            cout << "Age           : ";
+                            cin >> age;
+                            srand(time(nullptr));
+                            ID = rand() % 100 + 1;
+                            cout << "ID : " << ID << endl;
+                            cout << "Phone number  : ";
+                            cin >> phone_number;
+                            cout << "==============================\n";
+                            Customer customer(ID, room_number, occupant_name, age, address, email, phone_number);
+                            customers.push_back(customer);
+                            cout << "SAVED!\n";
                             break;
-                        } else {
-                            //TODO
                         }
                     }
                 } else {
-                    //TODO
+                    cout << "Invalid room ID!" << endl << endl;
+                }
+                break;
+            case 4:
+                cout << "CUSTOMER SEARCH\n";
+                int input;
+                cout << "Enter customer's ID OR ROOM NUMBER : ";
+                cin >> input;
+                // ID
+                for (auto &customer : customers) {
+                    if (customer.getId() == input) {
+                        cout << "Name        : " << customer.getName() << endl;
+                        cout << "Room number : " << customer.getRoomNumber() << endl;
+                        cout << "Address     : " << customer.getAddress() << endl;
+                        cout << "Phone       : " << customer.getPhoneNumber() << endl;
+                        break;
+
+                    }
+                }
+                // room number
+                for (auto &customer : customers) {
+                    if (customer.getRoomNumber() == input) {
+                        cout << "Name    : " << customer.getName() << endl;
+                        cout << "ID      : " << customer.getId() << endl;
+                        cout << "Address : " << customer.getAddress() << endl;
+                        cout << "Phone   : " << customer.getPhoneNumber() << endl;
+                        break;
+                    }
                 }
                 break;
             case 6 :
