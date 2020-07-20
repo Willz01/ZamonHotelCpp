@@ -11,6 +11,8 @@
 #include "Customer.cpp"
 #include <ctime>
 #include <cmath>
+#include "Room_feature.h"
+#include "Room_feature.cpp"
 
 using namespace std;
 
@@ -30,14 +32,27 @@ int main() {
     Room r4(4, "-", "Bedroom\t\t", 1300, true, 0);
     Room r5(5, "-", "Apartment\t\t", 7650, true, 0);
     Room r6(6, "-", "Bedroom\t\t", 1300, true, 0);
+    Room_feature r1_feature(r1, 3.5, 4.5, 3, 1, 1);
+    Room_feature r2_feature(r2, 12.3, 7.5, 13, 4, 6);
+    Room_feature r3_feature(r3, 7.5, 7.5, 35, 0, 17);
+    Room_feature r4_feature(r4, 3.5, 4.5, 3, 1, 1);
+    Room_feature r5_feature(r5, 12.5, 9.6, 4, 3, 3);
+    Room_feature r6_feature(r6, 4.5, 4.5, 3, 2, 2);
     vector<Room> rooms;
     vector<Customer> customers;
+    vector<Room_feature> room_features;
     rooms.push_back(r1);
     rooms.push_back(r2);
     rooms.push_back(r3);
     rooms.push_back(r4);
     rooms.push_back(r5);
     rooms.push_back(r6);
+    room_features.push_back(r1_feature);
+    room_features.push_back(r2_feature);
+    room_features.push_back(r3_feature);
+    room_features.push_back(r4_feature);
+    room_features.push_back(r5_feature);
+    room_features.push_back(r6_feature);
     /* ***************************** */
     int choice;
     int room_number;
@@ -56,11 +71,28 @@ int main() {
                          << "\t\t\t\t\t " << room.getPeriod() << "\t\t\t\t\n";
                 }
                 break;
+            case 2:
+                cout << "Enter room number : ";
+                int input_features;
+                cin >> input_features;
+                for (int j = 0; j < room_features.size() - 1; ++j) {
+                    if (room_features.at(j).getRoom().getRoomNo() == input_features) {
+                        cout << "Size         : " << room_features.at(j).getLength() * room_features.at(j).getWidth()
+                             << " m^2\n";
+                        cout << "Chairs       : " << room_features.at(j).getNumberOfChairs() << endl;
+                        cout << "Beds         : " << room_features.at(j).getNumberOfBeds() << endl;
+                        cout << "Tables       : " << room_features.at(j).getNumberOfTables() << endl;
+                        cout << "Occupant     : "
+                        << (room_features.at(j).getRoom().getOccupant() == "-" ? "Unoccupied" :
+                            room_features.at(j).getRoom().getOccupant()) << endl;
+                        break;
+                    }
+                }
+                break;
             case 3:
                 cout << "Enter room number : ";
                 cin >> room_number;
                 if (room_number <= 6) {
-                    cout << "Here\n";
                     // room info
                     for (int i = 0; i <= rooms.size() - 1; ++i) {
                         if (rooms.at(i).getRoomNo() == room_number) {
@@ -69,6 +101,7 @@ int main() {
                             string occupant_name;
                             getline(cin, occupant_name);
                             rooms.at(i).setOccupant(occupant_name);   //TODO(bug) -- sets name to blank
+                            room_features.at(i).room.setOccupant(occupant_name);
                             int dayFrom, monthFrom, dayTo, monthTo;
                             int period;
                             cout << "From--> " << endl;
@@ -174,7 +207,7 @@ void home_display() {
     cout << "Enter choice id : ";
 }
 
-int rdn(int y, int m, int d) { /* Rata Die day one is 0001-01-01 */
+int rdn(int y, int m, int d) {
     if (m < 3)
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
