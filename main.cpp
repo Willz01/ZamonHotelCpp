@@ -83,8 +83,8 @@ int main() {
                         cout << "Beds         : " << room_features.at(j).getNumberOfBeds() << endl;
                         cout << "Tables       : " << room_features.at(j).getNumberOfTables() << endl;
                         cout << "Occupant     : "
-                        << (room_features.at(j).getRoom().getOccupant() == "-" ? "Unoccupied" :
-                            room_features.at(j).getRoom().getOccupant()) << endl;
+                             << (room_features.at(j).getRoom().getOccupant() == "-" ? "Unoccupied" :
+                                 room_features.at(j).getRoom().getOccupant()) << endl;
                         break;
                     }
                 }
@@ -100,7 +100,7 @@ int main() {
                             cout << "Occupant name : ";
                             string occupant_name;
                             getline(cin, occupant_name);
-                            rooms.at(i).setOccupant(occupant_name);   //TODO(bug) -- sets name to blank
+                            rooms.at(i).setOccupant(occupant_name);
                             room_features.at(i).room.setOccupant(occupant_name);
                             int dayFrom, monthFrom, dayTo, monthTo;
                             int period;
