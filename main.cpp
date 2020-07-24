@@ -13,6 +13,8 @@
 #include <cmath>
 #include "Room_feature.h"
 #include "Room_feature.cpp"
+#include "Food_customer.h"
+#include "Food_customer.cpp"
 
 using namespace std;
 
@@ -212,5 +214,20 @@ int rdn(int y, int m, int d) {
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
+
+void restaurant_display() {
+    cout << "Zamon foods";
+    cout << "==========================\n";
+    cout << "||  1 : Rice and chicken ||" << endl;
+    cout << "||  2 : Ketchup          ||" << endl;
+    cout << "||  3 : Fish and sauce   ||\n";
+    cout << "||  4 : Potato           ||" << endl;
+    cout << "==========================\n";
+    int choice{0};
+    cout << "Enter choice id : ";
+
+
+}
+
 
 
