@@ -15,6 +15,7 @@
 #include "Room_feature.cpp"
 #include "Food_customer.h"
 #include "Food_customer.cpp"
+#include <regex>
 
 using namespace std;
 
@@ -169,9 +170,8 @@ int main() {
                 cout << "Enter room number : ";
                 int room_number_food;
                 cin >> room_number_food;
-
-                for (int i = 0; i <= rooms.size() - 1; ++i) {
-                    if (rooms.at(i).getRoomNo() == room_number){
+                for (int i = 0; i < rooms.size(); ++i) {
+                    if (rooms.at(i).getRoomNo() == room_number && !rooms.at(i).isAvailability()) {
                         if (choice_food == 1) {
                             string food_to_string = "Rice and chicken";
                             Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
@@ -199,12 +199,18 @@ int main() {
                         } else {
                             cout << "Invalid choice\n";
                         }
-                        // unoccupied
-                    } else if (rooms.at(i).isAvailability()) {
-                        cout << "Cannot send food to an unoccupied room!\n";
                         break;
-                        // invalid room number
-                    } else cout << "Invalid room number.\n";
+                    }
+                }
+                for (auto & room : rooms) {
+                    if (room.getRoomNo() == room_number_food && room.isAvailability()){
+                        cout << "You can't send food to an unoccupied room!\n";
+                        break;
+                    }
+                }
+                if (room_number_food > 6 || room_number_food < 0) {
+                    cout << "Invalid room number!\n";
+                    break;
                 }
                 break;
             case 6 :
