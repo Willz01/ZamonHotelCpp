@@ -3,6 +3,8 @@
 
 CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Customer.cpp
 CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Customer.h
+CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Food_customer.cpp
+CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Food_customer.h
 CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Room.cpp
 CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Room.h
 CMakeFiles/ZamonHotelBookingCpp.dir/main.cpp.o: ../Room_feature.cpp

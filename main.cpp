@@ -13,6 +13,9 @@
 #include <cmath>
 #include "Room_feature.h"
 #include "Room_feature.cpp"
+#include "Food_customer.h"
+#include "Food_customer.cpp"
+#include <regex>
 
 using namespace std;
 
@@ -23,6 +26,14 @@ void home_display();
 typedef std::chrono::system_clock Clock;
 
 int rdn(int y, int m, int d);
+
+void restaurant_display();
+
+double confirmPrice(int);
+
+void save_customer(vector<Customer> &customers, int room_number, const string &occupant_name);
+
+int get_date_diff(int dayFrom, int monthFrom, int dayTo, int monthTo);
 
 int main() {
     // Populate rooms;
@@ -114,33 +125,10 @@ int main() {
                             cin >> dayTo;
                             cout << "Month : ";
                             cin >> monthTo;
-
-                            auto now = Clock::now();
-                            time_t now_c = Clock::to_time_t(now);
-                            struct tm *parts = localtime(&now_c);
-                            period = rdn(1900 + parts->tm_year, monthFrom, dayFrom) -
-                                     rdn(1900 + parts->tm_year, monthTo, dayTo);
+                            period = get_date_diff(dayFrom, monthFrom, dayTo, monthTo);
                             rooms.at(i).setPeriod(abs(period));
                             rooms.at(i).setAvailability(false);
-                            cout << "CUSTOMER'S DETAILS\n";
-                            int age, ID, phone_number;
-                            string address, email;
-                            cout << "==============================\n";
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                            cout << "Email address : ";
-                            getline(cin, email);
-                            cout << "Address       : ";
-                            getline(cin, address);
-                            cout << "Age           : ";
-                            cin >> age;
-                            srand(time(nullptr));
-                            ID = rand() % 100 + 1;
-                            cout << "ID : " << ID << endl;
-                            cout << "Phone number  : ";
-                            cin >> phone_number;
-                            cout << "==============================\n";
-                            Customer customer(ID, room_number, occupant_name, age, address, email, phone_number);
-                            customers.push_back(customer);
+                            save_customer(customers, room_number, occupant_name);
                             cout << "SAVED!\n";
                             break;
                         }
@@ -162,7 +150,6 @@ int main() {
                         cout << "Address     : " << customer.getAddress() << endl;
                         cout << "Phone       : " << customer.getPhoneNumber() << endl;
                         break;
-
                     }
                 }
                 // room number
@@ -176,6 +163,56 @@ int main() {
                     }
                 }
                 break;
+            case 5 :
+                restaurant_display();
+                int choice_food;
+                cin >> choice_food;
+                cout << "Enter room number : ";
+                int room_number_food;
+                cin >> room_number_food;
+                for (int i = 0; i < rooms.size(); ++i) {
+                    if (rooms.at(i).getRoomNo() == room_number && !rooms.at(i).isAvailability()) {
+                        if (choice_food == 1) {
+                            string food_to_string = "Rice and chicken";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else if (choice_food == 2) {
+                            string food_to_string = "Fish and sauce";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else if (choice_food == 3) {
+                            string food_to_string = "Potatoes";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else if (choice_food == 4) {
+                            string food_to_string = "Soup";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else if (choice_food == 5) {
+                            string food_to_string = "Bread and cheese";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else if (choice_food == 6) {
+                            string food_to_string = "Coffee";
+                            Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
+                            cout << "DONE!\n";
+                        } else {
+                            cout << "Invalid choice\n";
+                        }
+                        break;
+                    }
+                }
+                for (auto & room : rooms) {
+                    if (room.getRoomNo() == room_number_food && room.isAvailability()){
+                        cout << "You can't send food to an unoccupied room!\n";
+                        break;
+                    }
+                }
+                if (room_number_food > 6 || room_number_food < 0) {
+                    cout << "Invalid room number!\n";
+                    break;
+                }
+                break;
             case 6 :
                 cout << "Thanks for trusting Zamon!";
                 exit(0);
@@ -184,8 +221,39 @@ int main() {
         }
     } while (choice != 6);
 
-
     return 0;
+}
+
+int get_date_diff(int dayFrom, int monthFrom, int dayTo, int monthTo) {
+    int period;
+    auto now = Clock::now();
+    time_t now_c = Clock::to_time_t(now);
+    struct tm *parts = localtime(&now_c);
+    period = rdn(1900 + parts->tm_year, monthFrom, dayFrom) -
+             rdn(1900 + parts->tm_year, monthTo, dayTo);
+    return period;
+}
+
+void save_customer(vector<Customer> &customers, int room_number, const string &occupant_name) {
+    cout << "CUSTOMER'S DETAILS\n";
+    int age, ID, phone_number;
+    string address, email;
+    cout << "==============================\n";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Email address : ";
+    getline(cin, email);
+    cout << "Address       : ";
+    getline(cin, address);
+    cout << "Age           : ";
+    cin >> age;
+    srand(time(nullptr));
+    ID = rand() % 100 + 1;
+    cout << "ID : " << ID << endl;
+    cout << "Phone number  : ";
+    cin >> phone_number;
+    cout << "==============================\n";
+    Customer customer(ID, room_number, occupant_name, age, address, email, phone_number);
+    customers.push_back(customer);
 }
 
 string r_NY(bool cond) {
@@ -212,5 +280,39 @@ int rdn(int y, int m, int d) {
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
+
+void restaurant_display() {
+    cout << "================\n";
+    cout << "  Zamon foods" << endl;
+    cout << "================\n";
+    cout << "==========================\n";
+    cout << "||  1 : Rice and chicken ||" << endl;
+    cout << "||  2 : Fish and sauce   ||\n";
+    cout << "||  3 : Potato           ||" << endl;
+    cout << "||  4 : Soup             ||\n";
+    cout << "||  5 : Bread and cheese ||\n";
+    cout << "||  6 : Coffee           ||\n";
+    cout << "==========================\n";
+    cout << "Enter choice id : ";
+}
+
+double confirmPrice(int choice_id) {
+    double price = 0;
+    if (choice_id == 1 || choice_id == 2) {
+        price = 300;
+    } else if (choice_id == 3) {
+        price = 150;
+    } else if (choice_id == 4) {
+        price = 140;
+    } else if (choice_id == 5) {
+        price = 375;
+    } else if (choice_id == 6) {
+        price = 50;
+    } else {
+        cout << "You definitely entered nonsense!!\n";
+    }
+    return price;
+}
+
 
 
