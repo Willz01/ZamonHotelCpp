@@ -5,7 +5,7 @@
 #ifndef ZAMONHOTELBOOKINGCPP_FOOD_CUSTOMER_H
 #define ZAMONHOTELBOOKINGCPP_FOOD_CUSTOMER_H
 
-#include "Room.h"
+#include "model/Room.h"
 
 using namespace std;
 

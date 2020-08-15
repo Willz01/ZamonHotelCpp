@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Customer.cpp
-Customer.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Customer.h
-utility
--
-
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Customer.h
-
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Food_customer.cpp
 Food_customer.h
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Food_customer.h
@@ -21,18 +13,8 @@ utility
 -
 
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Food_customer.h
-Room.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
-
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.cpp
-Room.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
-utility
--
-
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
-string
--
+model/Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.h
 
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Room_feature.cpp
 Room_feature.h
@@ -41,8 +23,8 @@ utility
 -
 
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Room_feature.h
-Room.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
+model/Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.h
 
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/main.cpp
 iostream
@@ -59,14 +41,14 @@ chrono
 -
 string
 -
-Room.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.h
-Room.cpp
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Room.cpp
-Customer.h
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Customer.h
-Customer.cpp
-/Users/willz/CLionProjects/ZamonHotelBookingCpp/Customer.cpp
+model/Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.h
+model/Room.cpp
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.cpp
+model/Customer.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Customer.h
+model/Customer.cpp
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Customer.cpp
 ctime
 -
 cmath
@@ -80,5 +62,23 @@ Food_customer.h
 Food_customer.cpp
 /Users/willz/CLionProjects/ZamonHotelBookingCpp/Food_customer.cpp
 regex
+-
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Customer.cpp
+Customer.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Customer.h
+utility
+-
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Customer.h
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.cpp
+Room.h
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.h
+utility
+-
+
+/Users/willz/CLionProjects/ZamonHotelBookingCpp/model/Room.h
+string
 -
 

@@ -5,7 +5,7 @@
 #ifndef ZAMONHOTELBOOKINGCPP_ROOM_FEATURE_H
 #define ZAMONHOTELBOOKINGCPP_ROOM_FEATURE_H
 
-#include "Room.h"
+#include "model/Room.h"
 
 
 class Room_feature {

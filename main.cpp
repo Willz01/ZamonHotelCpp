@@ -5,10 +5,10 @@
 #include <ctime>
 #include <chrono>
 #include <string>
-#include "Room.h"
-#include "Room.cpp"
-#include "Customer.h"
-#include "Customer.cpp"
+#include "model/Room.h"
+#include "model/Room.cpp"
+#include "model/Customer.h"
+#include "model/Customer.cpp"
 #include <ctime>
 #include <cmath>
 #include "Room_feature.h"
@@ -250,7 +250,7 @@ void save_customer(vector<Customer> &customers, int room_number, const string &o
     ID = rand() % 100 + 1;
     cout << "ID : " << ID << endl;
     cout << "Phone number  : ";
-    cin >> phone_number;
+    cin >> phone_number;  // TODO
     cout << "==============================\n";
     Customer customer(ID, room_number, occupant_name, age, address, email, phone_number);
     customers.push_back(customer);
