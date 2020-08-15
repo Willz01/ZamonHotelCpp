@@ -69,11 +69,12 @@ int main() {
     int room_number;
     do {
         home_display();
-        cin >> choice;
+        cin >> choice; // TODO exception (on all ints types)
         switch (choice) {
             case 1:
-                cout << "Room no.\t\t Occupant\t\t\t Type\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
-                     << endl;
+                cout
+                        << "Room no.\t\t Occupant\t\t\t Type\t\t\t\t Charge(SEK)\t\t Availability\t\t Period(day(s))\t\t"
+                        << endl;
                 for (auto &room : rooms) {
                     // 0,1,2,3,4,5
                     cout << room.getRoomNo() << "\t\t\t\t " << room.getOccupant() << "\t\t\t\t "
@@ -88,7 +89,8 @@ int main() {
                 cin >> input_features;
                 for (int j = 0; j < room_features.size() - 1; ++j) {
                     if (room_features.at(j).getRoom().getRoomNo() == input_features) {
-                        cout << "Size         : " << room_features.at(j).getLength() * room_features.at(j).getWidth()
+                        cout << "Size         : "
+                             << room_features.at(j).getLength() * room_features.at(j).getWidth()
                              << " m^2\n";
                         cout << "Chairs       : " << room_features.at(j).getNumberOfChairs() << endl;
                         cout << "Beds         : " << room_features.at(j).getNumberOfBeds() << endl;
@@ -202,8 +204,8 @@ int main() {
                         break;
                     }
                 }
-                for (auto & room : rooms) {
-                    if (room.getRoomNo() == room_number_food && room.isAvailability()){
+                for (auto &room : rooms) {
+                    if (room.getRoomNo() == room_number_food && room.isAvailability()) {
                         cout << "You can't send food to an unoccupied room!\n";
                         break;
                     }
