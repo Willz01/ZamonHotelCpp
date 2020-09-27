@@ -174,6 +174,7 @@ int main() {
                 cin >> room_number_food;
                 for (int i = 0; i < rooms.size(); ++i) {
                     if (rooms.at(i).getRoomNo() == room_number && !rooms.at(i).isAvailability()) {
+                        // TODO - fix ordering food to an unoccupied room
                         if (choice_food == 1) {
                             string food_to_string = "Rice and chicken";
                             Food_customer foodCustomer(room_number_food, food_to_string, confirmPrice(choice_food));
