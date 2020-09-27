@@ -157,10 +157,10 @@ int main() {
                 // room number
                 for (auto &customer : customers) {
                     if (customer.getRoomNumber() == input) {
-                        cout << "Name    : " << customer.getName() << endl;
-                        cout << "ID      : " << customer.getId() << endl;
-                        cout << "Address : " << customer.getAddress() << endl;
-                        cout << "Phone   : " << customer.getPhoneNumber() << endl;
+                        cout << "Name        : " << customer.getName() << endl;
+                        cout << "ID          : " << customer.getId() << endl;
+                        cout << "Address     : " << customer.getAddress() << endl;
+                        cout << "Phone       : " << customer.getPhoneNumber() << endl;
                         break;
                     }
                 }
