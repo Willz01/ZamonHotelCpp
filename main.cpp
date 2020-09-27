@@ -118,12 +118,12 @@ int main() {
                             int dayFrom, monthFrom, dayTo, monthTo;
                             int period;
                             cout << "From--> " << endl;
-                            cout << "Day : ";
+                            cout << "Day   : ";
                             cin >> dayFrom;
                             cout << "Month : ";
                             cin >> monthFrom;
                             cout << "To --->" << endl;
-                            cout << "Day : ";
+                            cout << "Day   : ";
                             cin >> dayTo;
                             cout << "Month : ";
                             cin >> monthTo;
